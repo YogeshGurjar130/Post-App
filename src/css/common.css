@@ -165,9 +165,9 @@
     font-weight: 700;
     width: 800px;
     color: black;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .post-body {
@@ -176,9 +176,9 @@
     width: 700px;
     font-weight: 400;
     color: black;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .post-date {
@@ -187,9 +187,9 @@
     font-weight: 700;
     color: grey;
     width: 800px;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .box-post-img {
@@ -231,7 +231,7 @@
 
 .rectangle-content {
     display: flex;
-    height: 110px;
+    height: 100px;
     flex-direction: row;
     align-items: center;
 }
@@ -269,6 +269,17 @@
     cursor: pointer;
 }
 
+.main-box-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background-color: rgb(226, 232, 232);
+}
+
 .main-box {
     display: flex;
     flex-direction: row;
@@ -277,16 +288,14 @@
     height: 100%;
     width: 100%;
     overflow-y: hidden;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
     background-color: rgb(226, 232, 232);
 }
 
 .feedback-container {
-  position: absolute;
-  left: 25%;
-  width: 60%;
-  height: 100%;
+    position: absolute;
+    left: 25%;
+    width: 60%;
+    height: 100%;
 }
 
 .feedback-form {
@@ -299,7 +308,7 @@
     padding: 20px;
     box-shadow: inset;
     background-color: rgb(191, 198, 198);
-    
+
 }
 
 .feedback-title {
@@ -317,8 +326,8 @@
 }
 
 .label-text-container {
- display: flex;
- flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .label {
@@ -363,4 +372,65 @@
     outline: none;
     border: none;
     cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    height: 60px;
+    align-items: center;
+}
+
+.pagination-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-container {
+    display: flex;
+    background-color: rgb(117, 116, 116);
+    height: 35px;
+    width: 35px;
+    border-radius: 18px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.page-number {
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+}
+
+.loader-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(20, 18, 18);
+    opacity: 0.66;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #41a6ea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

@@ -19,7 +19,9 @@ function App() {
       .then(response => response.json())
       .then(data => {
         console.log(data, "datasdklfh")
-        dispatch(UPDATE_STORE(data))
+        setTimeout(() => {
+          dispatch(UPDATE_STORE(data));
+        }, 5000);
       })
       .catch(error => console.error(error));
   }, []);

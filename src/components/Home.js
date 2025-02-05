@@ -4,19 +4,55 @@ import BoxCard from "./BoxCard";
 import RectangleCard from "./RectangleCard";
 import Feedback from "./Feedback";
 import { useSelector } from "react-redux";
+import Pagination from "./Pagination";
+import Loader from "./Loader";
 
 const Home = () => {
-
-
-    const data = useSelector(state => state)
-    const [count, setCount] = useState(6);
+    const {list, loader} = useSelector(state => state)
     const [view, setView] = useState("list");
     const [feedback, setFeedback] = useState(false);
-    console.log(data, "STORE DATA")
+    const [pages, setPages] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [currentData, setCurrentData] = useState([]);
+
+    console.log(list, "STORE DATA")
+
+    useEffect(() => {
+        calculatePage();
+    }, [list]);
+
+    useEffect(() => {
+        pageData(currentPage);
+    }, [list, currentPage]);
 
     // create the page wise list of 6 element from larger list
-    const createPage = () => {
-       
+    const pageData = (pageNumber) => {
+        const endIndex = pageNumber * 6;
+        const startIndex = endIndex - 6;
+        const pageData = list.slice(startIndex, endIndex);
+        setCurrentData(pageData);
+    }
+
+    const calculatePage = () => {
+        console.log(list.length, " <---- DATA LENGTH")
+        const pages = Math.ceil(list.length / 6);
+        console.log(pages, " <---- PAGES")
+        const arr = [];
+        if (pages === 1) {
+        } else {
+            for (let i = 1; i <= pages; i++) {
+                arr.push(i);
+            }
+        }
+        console.log(arr, " <--- ARRAY")
+        setPages(arr)
+    }
+
+    const onChangePage = (pageNumber) => {
+        console.log(pageNumber, " <--- CURRENT_PAGE")
+        if (pageNumber !== pages.length + 1 && pageNumber > 0) {
+            setCurrentPage(pageNumber)
+        }
     }
 
     return (
@@ -49,12 +85,19 @@ const Home = () => {
                     </div>
                 </div>
                 {view === 'list' && <div className="main">
-                    {data.map((post) => <RectangleCard post={post} />)}
+                    <div className="main">
+                        {currentData.map((post) => <RectangleCard post={post} />)}
+                    </div>
+                    <Pagination pages={pages} currentPage={currentPage} onChangePage={onChangePage} />
                 </div>}
-                {view === 'box' && <div className="main-box">
-                    {data.map((post) => <BoxCard post={post} />)}
+                {view === 'box' && <div className="main-box-container">
+                    <div className="main-box">
+                        {currentData.map((post) => <BoxCard post={post} />)}
+                    </div>
+                    <Pagination pages={pages} currentPage={currentPage} onChangePage={onChangePage} />
                 </div>}
                 {feedback && <Feedback />}
+                {loader && <Loader />}
             </div>
         </div>
     )
